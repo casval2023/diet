@@ -2,6 +2,9 @@ import streamlit as st
 import csv
 from datetime import datetime
 import os
+import boto3
+from io import StringIO
+import io
 
 #ログイン情報
 id_pwd = {'test': 'test'}
