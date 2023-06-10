@@ -42,9 +42,6 @@ if st.button('Submit'):
             'Age': age, 'Gender': gender, 
             'Tasks': tasks, 'Task Status': task_status,
             'Date': datetime.date.today()}
-    df = pd.DataFrame(data, indexすみません、前回のメッセージが途中で切れてしまいました。以下が続きのコードです。
-
-```python
     df = pd.DataFrame(data, index=[0])
     
     # データをS3に保存
