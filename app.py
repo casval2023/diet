@@ -31,7 +31,7 @@ gender = st.selectbox('性別', ['男性', '女性'])
 st.subheader('今日のタスク')
 tasks = st.text_area('今日のタスクを入力してください')
 st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）、１日１万歩達成、動画講義１章分視聴、復習問題１章分チャレンジ、筋トレメニュー')
-task_status = [st.checkbox(task) for task in tasks]
+#task_status = [st.checkbox(task) for task in tasks]
 
 # 入力データの保存
 if st.button('データ保存'):
