@@ -21,10 +21,10 @@ st.title('Health & Fitness Tracker')
 
 # ユーザー情報の入力
 st.subheader('User Information')
-height = st.number_input('Height (cm)', min_value=100.0, max_value=250.0)
-weight = st.number_input('Weight (kg)', min_value=30.0, max_value=200.0)
-body_fat = st.number_input('Body Fat (%)', min_value=5.0, max_value=50.0)
-age = st.number_input('Age', min_value=10, max_value=100)
+height = st.number_input('Height (cm)', min_value=120, max_value=250, step=1)
+weight = st.number_input('Weight (kg)', min_value=30, max_value=200, step=1)
+body_fat = st.number_input('Body Fat (%)', min_value=2.0, max_value=50.0, step=1.0)
+age = st.number_input('Age', min_value=10, max_value=120, step=1)
 gender = st.selectbox('Gender', ['Male', 'Female'])
 
 # タスクの設定
