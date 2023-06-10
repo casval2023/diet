@@ -37,8 +37,8 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 if st.button('データ保存'):
     data = {'Height': height, 'Weight': weight, 'Body Fat': body_fat,
             'Age': age, 'Gender': gender, 
-            'Tasks': tasks, 'Task Status': task_status,
-            'Date': datetime.date.today()}
+            'Tasks': tasks, 'Date': datetime.date.today()}
+    # 'Task Status': task_status,
     df = pd.DataFrame(data, index=[0])
     
     # データをS3に保存
