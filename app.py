@@ -28,12 +28,9 @@ age = st.number_input('Age', min_value=10, max_value=120, step=1)
 gender = st.selectbox('Gender', ['Male', 'Female'])
 
 # タスクの設定
-st.subheader('Today\'s Tasks')
-tasks = ['Consume less than 1500 kcal',
-         'Walk 10,000 steps',
-         'Watch 1 chapter of video lecture',
-         'Challenge 1 chapter of review questions',
-         'Workout']
+st.subheader('今日のタスク')
+tasks = st.text_area('今日のタスクを入力してください')
+st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）、１日１万歩達成、動画講義１章分視聴、復習問題１章分チャレンジ、筋トレメニュー')
 task_status = [st.checkbox(task) for task in tasks]
 
 # 入力データの保存
