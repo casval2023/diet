@@ -5,11 +5,11 @@ import datetime
 
 # AWSのS3の設定
 s3 = boto3.client('s3', 
-                  region_name='your_region_name',
-                  aws_access_key_id='your_access_key',
-                  aws_secret_access_key='your_secret_key')
+                  region_name="ap-northeast-1",
+                  aws_access_key_id='AKIAV27ZCYO3NIGWWEEZ',
+                  aws_secret_access_key='v5HeeUhAIJBOaWTpyRrbYR+UuG60NDQ6JMjg7guw')
 
-bucket_name = 'your_bucket_name'
+bucket_name = 'skkeng'
 
 def write_to_s3(df, filename):
     csv_buffer = df.to_csv(index=False)
