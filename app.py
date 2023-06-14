@@ -53,7 +53,7 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 if st.button('データ保存'):
     ID = 'test'
     PASS = 'test'
-    new_row = pd.DataFrame({'ID':ID,
+    new_row = pd.DataFrame({'ID': ID,
                        'PASS': PASS,
                        '日付': date,
                        '身長': height,
