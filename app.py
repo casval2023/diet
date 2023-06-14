@@ -5,9 +5,6 @@ import datetime
 from io import StringIO
 import matplotlib.pyplot as plt
 
-# 日本語フォントを設定
-mpl.rcParams['font.family'] = 'IPAexGothic'
-
 # AWSのクレデンシャルを設定（AWS Management Consoleで確認できます）
 AWS_ACCESS_KEY_ID = 'AKIAV27ZCYO3NIGWWEEZ'
 AWS_SECRET_ACCESS_KEY = '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'
