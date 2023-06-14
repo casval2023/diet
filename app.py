@@ -68,7 +68,7 @@ st.write(f'{my_ID}さんの体重変化推移')
 fig, ax = plt.subplots(figsize=(10,6))
 ax.plot(df['日付'], df['体重'])
 #ax.set_title('Weight changes')
-ax.set_xlabel('date')
+ax.set_xlabel('Date')
 ax.set_ylabel('Weight')
 ax.grid(True)
 
