@@ -31,6 +31,7 @@ df = load_data()
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date()
+st.write(df)
 
 # StreamlitのUIの設定
 st.title('ダイエット記録アプリ')
