@@ -62,7 +62,8 @@ data = {
 # DataFrameへの変換と日付の型変換
 df = pd.DataFrame(data)
 df['日付'] = pd.to_datetime(df['日付'])
-st.write(f'{my_ID}さんの体重変化推移')
+#st.write(f'{my_ID}さんの体重変化推移')
+st.write('<p style="font-family:f'{my_ID}さんの体重変化推移'; color:purple; font-size: 28px;">monospace</p>',  unsafe_allow_html=True)
 
 # グラフの作成
 fig, ax = plt.subplots(figsize=(10,6))
