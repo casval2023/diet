@@ -62,7 +62,7 @@ data = {
 # DataFrameへの変換と日付の型変換
 df = pd.DataFrame(data)
 df['日付'] = pd.to_datetime(df['日付'])
-st.write(f{my_ID}'の体重変化推移')
+st.write(f'{my_ID}の体重変化推移')
 
 # グラフの作成
 fig, ax = plt.subplots(figsize=(10,6))
