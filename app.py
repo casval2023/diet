@@ -55,7 +55,7 @@ if st.button('データ保存'):
     new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,
                 '体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': ''}
     # 'Task Status': task_status,
-    df = df.append(new_row, ignore_index=True)
+    df = df.append(new_row, ignore_index=False)
     
     # データをS3に保存
     save_data(df)
