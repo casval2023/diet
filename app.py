@@ -3,6 +3,7 @@ import pandas as pd
 import boto3
 import datetime
 from io import StringIO
+import matplotlib.pyplot as plt
 
 # AWSのクレデンシャルを設定（AWS Management Consoleで確認できます）
 AWS_ACCESS_KEY_ID = 'AKIAV27ZCYO3NIGWWEEZ'
@@ -33,7 +34,7 @@ df = load_data()
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date().strftime("%Y/%m/%d")
-st.write(df)
+#st.write(df)
 
 # StreamlitのUIの設定
 st.title('ダイエット記録アプリ')
@@ -51,6 +52,27 @@ st.subheader('今日のタスク')
 tasks = st.text_area('今日のタスクを入力してください')
 st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）、１日１万歩達成、動画講義１章分視聴、復習問題１章分チャレンジ、筋トレメニュー')
 #task_status = [st.checkbox(task) for task in tasks]
+
+# データの作成
+data = {
+    '日付': ['2023-06-01', '2023-06-02', '2023-06-03', '2023-06-04', '2023-06-05'],
+    '体重': [68, 69, 70, 71, 70]
+}
+
+# DataFrameへの変換と日付の型変換
+df = pd.DataFrame(data)
+df['日付'] = pd.to_datetime(df['日付'])
+
+# グラフの作成
+fig, ax = plt.subplots(figsize=(10,6))
+ax.plot(df['日付'], df['体重'])
+ax.set_title('体重の変化')
+ax.set_xlabel('日付')
+ax.set_ylabel('体重')
+ax.grid(True)
+
+# Streamlitにグラフを表示
+st.pyplot(fig)
 
 # 入力データの保存
 if st.button('データ保存'):
