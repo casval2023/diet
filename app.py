@@ -28,8 +28,8 @@ def save_data(df):
     s3.put_object(Bucket=AWS_S3_BUCKET, Key='df.csv', Body=csv_buffer.getvalue())
 
 df = load_data()
-list_df = df.values.tolist()
-st.write(list_df)
+#list_df = df.values.tolist()
+#st.write(list_df)
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date().strftime("%Y/%m/%d")
@@ -55,7 +55,7 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 # 入力データの保存
 if st.button('データ保存'):
     new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,'体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': ''}
-    st.write(new_row)
+    #st.write(new_row)
     df = df.append(new_row, ignore_index=True)
     
     # データをS3に保存
