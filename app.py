@@ -32,7 +32,7 @@ list_df = df.values.tolist()
 st.write(list_df)
 my_ID = 'test'
 my_PASS = 'test'
-date = datetime.datetime.utcnow().date()
+date = datetime.datetime.utcnow().date().strftime("%Y/%m/%d")
 st.write(df)
 
 # StreamlitのUIの設定
