@@ -50,7 +50,7 @@ gender = st.selectbox('性別', ['男性', '女性'])
 # タスクの設定
 st.subheader('今日のタスク')
 tasks = st.text_area('今日のタスクを入力してください')
-st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）、１日１万歩達成、動画講義１章分視聴、復習問題１章分チャレンジ、筋トレメニュー')
+#st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）、１日１万歩達成、動画講義１章分視聴、復習問題１章分チャレンジ、筋トレメニュー')
 #task_status = [st.checkbox(task) for task in tasks]
 
 # データの作成
@@ -62,7 +62,7 @@ data = {
 # DataFrameへの変換と日付の型変換
 df = pd.DataFrame(data)
 df['日付'] = pd.to_datetime(df['日付'])
-st.write(f'{my_ID}の体重変化推移')
+st.write(f'{my_ID}さんの体重変化推移')
 
 # グラフの作成
 fig, ax = plt.subplots(figsize=(10,6))
