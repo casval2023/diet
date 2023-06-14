@@ -3,27 +3,33 @@ import pandas as pd
 import boto3
 import datetime
 
-# S3
-def connect_s3_skkeng():
-    s3 = boto3.resource('s3',
-                           region_name="ap-northeast-1",
-                           aws_access_key_id='AKIAV27ZCYO3NIGWWEEZ',
-                           aws_secret_access_key='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'
-                       )
-    return s3,s3.Bucket('skkeng')
-  
-def load_data(s3):
-    src_obj = s3.Object('skkeng','diet/data.txt')
-    body_in = src_obj.get()['Body'].read().decode("utf-8")
-    buffer_in = io.StringIO(body_in)
-    df_fn = pd.read_csv(buffer_in,header = None, index_col=0,lineterminator='\n')
-    df_fn.reset_index(inplace= True)
-    return df_fn
+# AWSのクレデンシャルを設定（AWS Management Consoleで確認できます）
+AWS_ACCESS_KEY_ID = 'AKIAV27ZCYO3NIGWWEEZ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_S3_BUCKET = 'skkeng'
+AWS_S3_REGION_NAME = 'ap-northeast-1' # 例：'us-west-2'
 
-def save_data(s3):
-    s3.Bucket('skkeng').upload_file(Filename='data.txt', Key='data.txt')
+s3 = boto3.client('s3', 
+                  region_name=AWS_S3_REGION_NAME,
+                  aws_access_key_id=AWS_ACCESS_KEY_ID, 
+                  aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
   
+def load_data():
+    # S3からCSVを読み込み、DataFrameに変換
+    obj = s3.get_object(Bucket=AWS_S3_BUCKET, Key='data.csv')
+    df = pd.read_csv(StringIO(obj['Body'].read().decode('utf-8')))
+    return df
 
+def save_data(df):
+    # DataFrameをCSVに変換し、S3に保存
+    csv_buffer = StringIO()
+    df.to_csv(csv_buffer)
+    s3.put_object(Bucket=AWS_S3_BUCKET, Key='data.csv', Body=csv_buffer.getvalue())
+
+df = load_data()
+ID = 'test'
+PASS = 'test'
+date = datetime.datetime.utcnow().date()
 
 # StreamlitのUIの設定
 st.title('ダイエット記録アプリ')
@@ -44,13 +50,20 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 
 # 入力データの保存
 if st.button('データ保存'):
-    data = {'Height': height, 'Weight': weight, 'Body Fat': body_fat,
-            'Age': age, 'Gender': gender, 
-            'Tasks': tasks, 'Date': datetime.date.today()}
+    new_row = pd.DataFrame({'ID':ID,
+                       'PASS': PASS,
+                       '日付': date,
+                       '身長': height,
+                       '体重': weight,
+                       '体脂肪率': body_fat,
+                       '年齢': age,
+                       '性別': gender,
+                       'タスク': tasks,
+                       '感想': ''})
     # 'Task Status': task_status,
-    df = pd.DataFrame(data, index=[0])
+    df = df.append(new_row, ignore_index=True)
     
     # データをS3に保存
-    write_to_s3(df, f'data_{datetime.date.today()}.csv')
-
+    save_data(df)
+    st.write(df)
     st.success('データ保存完了.')
