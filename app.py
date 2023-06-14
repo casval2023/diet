@@ -3,18 +3,27 @@ import pandas as pd
 import boto3
 import datetime
 
-# AWSのS3の設定
-s3 = boto3.client('s3', 
-                  region_name="ap-northeast-1",
-                  aws_access_key_id='AKIAV27ZCYO3NIGWWEEZ',
-                  aws_secret_access_key='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')
+# S3
+def connect_s3_skkeng():
+    s3 = boto3.resource('s3',
+                           region_name="ap-northeast-1",
+                           aws_access_key_id='AKIAV27ZCYO3NIGWWEEZ',
+                           aws_secret_access_key='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'
+                       )
+    return s3,s3.Bucket('skkeng')
+  
+def load_data(s3):
+    src_obj = s3.Object('skkeng','diet/data.txt')
+    body_in = src_obj.get()['Body'].read().decode("utf-8")
+    buffer_in = io.StringIO(body_in)
+    df_fn = pd.read_csv(buffer_in,header = None, index_col=0,lineterminator='\n')
+    df_fn.reset_index(inplace= True)
+    return df_fn
 
-bucket_name = 'skkeng'
+def save_data(s3):
+    s3.Bucket('skkeng').upload_file(Filename='data.txt', Key='data.txt')
+  
 
-def write_to_s3(df, filename):
-    csv_buffer = df.to_csv(index=False)
-    s3_resource = boto3.resource('s3')
-    s3_resource.Object(bucket_name, filename).put(Body=csv_buffer)
 
 # StreamlitのUIの設定
 st.title('ダイエット記録アプリ')
