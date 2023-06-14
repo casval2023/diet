@@ -31,6 +31,7 @@ df = load_data()
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date()
+tasks = ''
 st.write(df)
 
 # StreamlitのUIの設定
