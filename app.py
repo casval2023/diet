@@ -16,7 +16,7 @@ s3 = boto3.client('s3',
   
 def load_data():
     # S3からCSVを読み込み、DataFrameに変換
-    obj = s3.get_object(Bucket=AWS_S3_BUCKET, Key='data.csv')
+    obj = s3.get_object(Bucket=AWS_S3_BUCKET, Key='df.csv')
     df = pd.read_csv(StringIO(obj['Body'].read().decode('utf-8')))
     return df
 
