@@ -54,12 +54,12 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 
 # 入力データの保存
 if st.button('データ保存'):
-    #new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,'体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': ''}
-    new_row = (my_ID,my_PASS,date,height,weight,body_fat,age,gender,tasks,'良い')
+    new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,'体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': '良い'}
     st.write(new_row)
-    df = df.append(new_row)
+    df = df.append(new_row, ignore_index=True)
     
     # データをS3に保存
     save_data(df)
     st.write(df)
     st.success('データ保存完了.')
+
