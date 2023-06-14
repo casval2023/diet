@@ -28,7 +28,8 @@ def save_data(df):
     s3.put_object(Bucket=AWS_S3_BUCKET, Key='df.csv', Body=csv_buffer.getvalue())
 
 df = load_data()
-st.write(df.tolist())
+list_df = df.tolist()
+st.write(list_df)
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date()
