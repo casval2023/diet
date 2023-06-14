@@ -28,8 +28,8 @@ def save_data(df):
     s3.put_object(Bucket=AWS_S3_BUCKET, Key='df.csv', Body=csv_buffer.getvalue())
 
 df = load_data()
-ID = 'test'
-PASS = 'test'
+my_ID = 'test'
+my_PASS = 'test'
 date = datetime.datetime.utcnow().date()
 
 # StreamlitのUIの設定
@@ -51,10 +51,8 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 
 # 入力データの保存
 if st.button('データ保存'):
-    ID = 'test'
-    PASS = 'test'
-    new_row = pd.DataFrame({'ID': ID,
-                       'PASS': PASS,
+    new_row = pd.DataFrame({'ID': my_ID,
+                       'PASS': my_PASS,
                        '日付': date,
                        '身長': height,
                        '体重': weight,
