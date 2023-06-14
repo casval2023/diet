@@ -28,7 +28,7 @@ def save_data(df):
     df.to_csv(csv_buffer)
     s3.put_object(Bucket=AWS_S3_BUCKET, Key='df.csv', Body=csv_buffer.getvalue())
 
-df = load_data()
+#df = load_data()
 #list_df = df.values.tolist()
 #st.write(list_df)
 my_ID = 'test'
