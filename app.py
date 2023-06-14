@@ -31,7 +31,6 @@ df = load_data()
 my_ID = 'test'
 my_PASS = 'test'
 date = datetime.datetime.utcnow().date()
-tasks = ''
 st.write(df)
 
 # StreamlitのUIの設定
@@ -53,8 +52,7 @@ st.write('例：１日1500kcal以内（基礎代謝量＋200～300kcal目安）�
 
 # 入力データの保存
 if st.button('データ保存'):
-    new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,
-                '体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': ''}
+    new_row = {'ID': my_ID,'PASS': my_PASS,'日付': date,'身長': height,'体重': weight,'体脂肪率': body_fat, '年齢': age,'性別': gender,'タスク': tasks,'感想': ''}
     st.write(new_row)
     df = df.append(new_row, ignore_index=True)
     
