@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import boto3
 import datetime
+from io import StringIO
 
 # AWSのクレデンシャルを設定（AWS Management Consoleで確認できます）
 AWS_ACCESS_KEY_ID = 'AKIAV27ZCYO3NIGWWEEZ'
@@ -24,7 +25,7 @@ def save_data(df):
     # DataFrameをCSVに変換し、S3に保存
     csv_buffer = StringIO()
     df.to_csv(csv_buffer)
-    s3.put_object(Bucket=AWS_S3_BUCKET, Key='data.csv', Body=csv_buffer.getvalue())
+    s3.put_object(Bucket=AWS_S3_BUCKET, Key='df.csv', Body=csv_buffer.getvalue())
 
 df = load_data()
 ID = 'test'
